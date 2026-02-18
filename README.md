@@ -42,53 +42,16 @@ Symlink Creator creates *symlinks* which is an NTFS feature. Unlike the traditio
 ## Why Symlink Creator needs administrative rights
 It has been stated before that Symlink Creator uses the `mklink` command to create symlinks. The `mklink` command requires administrative privilege to create symlinks. You can find more information [here](https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/create-symbolic-links).
 
-## Support Symlink Creator
-Symlink Creator is a simple tool, but if it has saved you time or made things a bit easier, consider supporting the project. Every contribution helps keep it going and encourages future improvements.
+## Enhancements in this Fork
 
-<a href='https://ko-fi.com/O4O01L2D7P' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi6.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+This version includes additional configuration options for improved workflow efficiency:
 
-You can donate via [PayPal](https://paypal.me/arnobpl).
+- **Configurable Default Paths**: Customize the default directories in `App.config`:
+  - `DefaultSourceFolderPath`: Initial directory for the "Add folders" dialog
+  - `DefaultDestinationFolderPath`: Initial directory for the "Destination path" dialog
 
-<img src="SymlinkCreator/_ReadMe/qr-paypal.jpg" alt="PayPal QR Code" width="200">
+## License
 
-You can also send crypto tokens to the following addresses:
-
-<table>
-  <thead>
-    <tr>
-      <th>Blockchain</th>
-      <th>QR Code and Address</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Ethereum</td>
-      <td>
-        <img src="SymlinkCreator/_ReadMe/QR-Ethereum.png" alt="Ethereum QR Code" width="200"><br>
-        <code>0x2536B9A9a6b49234db2006482f43d02BEE6FDd07</code>
-      </td>
-    </tr>
-    <tr>
-      <td>Bitcoin</td>
-      <td>
-        <img src="SymlinkCreator/_ReadMe/QR-Bitcoin.png" alt="Bitcoin QR Code" width="200"><br>
-        <code>bc1qwhwqal63y629ltnyhvr0txl5xngnhh9dv9u5yf</code>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-If donating is not an option, simply starring the repo, sharing feedback, or spreading the word is equally appreciated. Thank you for using Symlink Creator and sharing your thoughts.
-
-Happy Symlinking!
-
-## Modifications in this Fork
-
-This version of Symlink Creator includes additional configuration options to streamline your workflow:
-
-- **Configurable Default Paths**: You can customize the default directories for adding folders and selecting the destination path. These settings are located in the `App.config` file:
-  - `DefaultSourceFolderPath`: Sets the initial directory for the "Add folders" dialog (e.g., `C:\MCPs\SKILLS`).
-  - `DefaultDestinationFolderPath`: Sets the initial directory for the "Destination path" dialog (e.g., `C:\MCPs\clone`).
-
-This project is a fork of the original [Symlink Creator](https://github.com/arnobpl/SymlinkCreator) by Arnob Paul. The original license and copyright notice can be found in the [LICENSE](LICENSE) file.
+Licensed under the [MIT License](LICENSE) - © 2019 Arnob Paul
+This is a fork of the original [Symlink Creator](https://github.com/arnobpl/SymlinkCreator)
 
