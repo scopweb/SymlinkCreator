@@ -150,7 +150,7 @@
                         x:Name="CreateSymlinksButton"
                         Click="CreateSymlinksButton_OnClick"
                         Background="{DynamicResource AppAccentBrush}"
-                        Foreground="#000000"
+                        Foreground="#1E1E2E"
                         FontWeight="SemiBold"
                         Margin="0,12,0,0"
                         Padding="16,10"
