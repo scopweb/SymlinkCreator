@@ -95,7 +95,7 @@ namespace SymlinkCreator.core
 
         #region web addresses
 
-        public static string CompanyWebAddress => "https://github.com/arnobpl/SymlinkCreator";
+        public static string CompanyWebAddress => "https://github.com/scopweb/SymlinkCreator";
 
         public static Uri CompanyWebAddressUri => new Uri(CompanyWebAddress);
 

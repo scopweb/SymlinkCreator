@@ -37,10 +37,12 @@
             </TextBlock.Text>
         </TextBlock>
 
-        <TextBlock Text="Developed by Arnob Paul. Thank you for using this application! :)" />
+        <TextBlock Text="Originally developed by Arnob Paul. Thank you for using this application! :)" />
 
         <TextBlock>
-            <Run Text="Visit the developer's website:" />
+            <Run Text="This is a fork with enhanced configuration options." />
+            <LineBreak />
+            <Run Text="Fork Repository:" />
             <LineBreak />
             <Hyperlink NavigateUri="{x:Static core:ApplicationConfiguration.CompanyWebAddressUri}" Click="Hyperlink_OnClick">
                 <Run Text="{x:Static core:ApplicationConfiguration.CompanyWebAddress}" />
