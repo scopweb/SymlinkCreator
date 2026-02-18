@@ -1,5 +1,4 @@
-﻿using Microsoft.WindowsAPICodePack.Dialogs;
-using SymlinkCreator.core;
+﻿using SymlinkCreator.core;
 using SymlinkCreator.ui.aboutWindow;
 using SymlinkCreator.ui.utility;
 using System;
@@ -85,16 +84,15 @@ namespace SymlinkCreator.ui.mainWindow
 
         private void AddFoldersButton_OnClick(object sender, RoutedEventArgs e)
         {
-            CommonOpenFileDialog folderBrowserDialog = new CommonOpenFileDialog
+            var folderDialog = new Microsoft.Win32.OpenFolderDialog();
+            if (!string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["DefaultSourceFolderPath"]))
             {
-                IsFolderPicker = true,
-                Multiselect = true,
-                InitialDirectory = System.Configuration.ConfigurationManager.AppSettings["DefaultSourceFolderPath"]
-            };
+                folderDialog.InitialDirectory = System.Configuration.ConfigurationManager.AppSettings["DefaultSourceFolderPath"];
+            }
 
-            if (folderBrowserDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            if (folderDialog.ShowDialog() == true)
             {
-                AddToSourceFileOrFolderList(folderBrowserDialog.FileNames);
+                AddToSourceFileOrFolderList(new[] { folderDialog.FolderName });
             }
         }
 
@@ -102,16 +100,16 @@ namespace SymlinkCreator.ui.mainWindow
         {
             if (!(this.DataContext is MainWindowViewModel mainWindowViewModel)) return;
 
-            CommonOpenFileDialog folderBrowserDialog = new CommonOpenFileDialog
+            var folderDialog = new Microsoft.Win32.OpenFolderDialog();
+            if (!string.IsNullOrEmpty(_previouslySelectedDestinationFolderPath))
             {
-                IsFolderPicker = true,
-                InitialDirectory = _previouslySelectedDestinationFolderPath
-            };
+                folderDialog.InitialDirectory = _previouslySelectedDestinationFolderPath;
+            }
 
-            if (folderBrowserDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            if (folderDialog.ShowDialog() == true)
             {
-                mainWindowViewModel.DestinationPath = folderBrowserDialog.FileName;
-                _previouslySelectedDestinationFolderPath = folderBrowserDialog.FileName;
+                mainWindowViewModel.DestinationPath = folderDialog.FolderName;
+                _previouslySelectedDestinationFolderPath = folderDialog.FolderName;
             }
         }
 

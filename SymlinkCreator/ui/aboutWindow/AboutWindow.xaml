@@ -1,56 +1,97 @@
-﻿<Window x:Class="SymlinkCreator.ui.aboutWindow.AboutWindow"
+<Window x:Class="SymlinkCreator.ui.aboutWindow.AboutWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SymlinkCreator.ui.aboutWindow"
         xmlns:core="clr-namespace:SymlinkCreator.core"
-        xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="About"
-        Width="400"
+        Title="About Symlink Creator"
+        Width="500"
+        Height="auto"
+        SizeToContent="Height"
         ResizeMode="NoResize"
-        WindowStyle="SingleBorderWindow"
-        SizeToContent="Height">
-    <Window.Resources>
-        <Thickness x:Key="DefaultMargin">5</Thickness>
-        <system:Double x:Key="DefaultMinButtonWidth">80</system:Double>
-        <system:Double x:Key="DefaultMinButtonHeight">20</system:Double>
+        WindowStartupLocation="CenterOwner"
+        Background="{DynamicResource AppSurfaceBrush}"
+        Foreground="{DynamicResource AppTextBrush}">
 
-        <Style TargetType="Button">
-            <Setter Property="Margin" Value="{StaticResource DefaultMargin}" />
-            <Setter Property="MinWidth" Value="{StaticResource DefaultMinButtonWidth}" />
-            <Setter Property="MinHeight" Value="{StaticResource DefaultMinButtonHeight}" />
-        </Style>
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-        <Style TargetType="TextBlock">
-            <Setter Property="Margin" Value="{StaticResource DefaultMargin}" />
-        </Style>
-    </Window.Resources>
-    <StackPanel Margin="{StaticResource DefaultMargin}" Orientation="Vertical">
-        <TextBlock>
-            <TextBlock.Text>
-                <MultiBinding StringFormat="{}{0} v{1}">
-                    <Binding Source="{x:Static core:ApplicationConfiguration.ApplicationName}" />
-                    <Binding Source="{x:Static core:ApplicationConfiguration.ApplicationVersion}" />
-                </MultiBinding>
-            </TextBlock.Text>
+        <!-- Application Title and Version -->
+        <TextBlock Grid.Row="0"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   Margin="0,0,0,8">
+            <Run Foreground="{DynamicResource AppAccentBrush}">Symlink Creator</Run>
+            <Run Foreground="{DynamicResource AppSubtextBrush}">v1.4.0</Run>
         </TextBlock>
 
-        <TextBlock Text="Originally developed by Arnob Paul. Thank you for using this application! :)" />
+        <!-- Original Author -->
+        <TextBlock Grid.Row="1"
+                   Text="Originally developed by Arnob Paul"
+                   Foreground="{DynamicResource AppSubtextBrush}"
+                   Margin="0,0,0,4"
+                   TextWrapping="Wrap" />
 
-        <TextBlock>
-            <Run Text="This is a fork with enhanced configuration options." />
-            <LineBreak />
-            <Run Text="Fork Repository:" />
-            <LineBreak />
-            <Hyperlink NavigateUri="{x:Static core:ApplicationConfiguration.CompanyWebAddressUri}" Click="Hyperlink_OnClick">
-                <Run Text="{x:Static core:ApplicationConfiguration.CompanyWebAddress}" />
-            </Hyperlink>
-        </TextBlock>
+        <!-- Description -->
+        <TextBlock Grid.Row="2"
+                   Text="A GUI application for creating Windows NTFS symbolic links with support for multiple file/folder creation, relative paths, and agent folder replication."
+                   Foreground="{DynamicResource AppTextBrush}"
+                   Margin="0,12,0,12"
+                   TextWrapping="Wrap"
+                   LineHeight="18" />
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="OK" IsDefault="True" Click="OkButton_OnClick" />
+        <!-- Fork Information -->
+        <Border Grid.Row="3"
+                Background="{DynamicResource AppOverlayBrush}"
+                BorderBrush="{DynamicResource AppBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="4"
+                Padding="12">
+            <StackPanel>
+                <TextBlock Text="Enhanced Fork"
+                           Foreground="{DynamicResource AppAccentBrush}"
+                           FontWeight="SemiBold"
+                           FontSize="11"
+                           Margin="0,0,0,4" />
+                <TextBlock Text="This is a fork with enhanced configuration options including:  configurable default source and destination paths. For more information, visit:"
+                           Foreground="{DynamicResource AppTextBrush}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,8" />
+                <TextBlock>
+                    <Hyperlink NavigateUri="{x:Static core:ApplicationConfiguration.CompanyWebAddressUri}"
+                               Click="Hyperlink_OnClick"
+                               Foreground="{DynamicResource AppAccentBrush}">
+                        <TextBlock Text="{x:Static core:ApplicationConfiguration.CompanyWebAddress}" />
+                    </Hyperlink>
+                </TextBlock>
+            </StackPanel>
+        </Border>
+
+        <!-- Footer -->
+        <TextBlock Grid.Row="4"
+                   Text="Thank you for using Symlink Creator!"
+                   Foreground="{DynamicResource AppMutedBrush}"
+                   Margin="0,16,0,16"
+                   TextAlignment="Center"
+                   FontSize="11" />
+
+        <!-- Close Button -->
+        <StackPanel Grid.Row="5"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button Content="Close"
+                    Click="OkButton_OnClick"
+                    Width="80"
+                    IsDefault="True" />
         </StackPanel>
-    </StackPanel>
+    </Grid>
 </Window>
