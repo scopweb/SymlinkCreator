@@ -134,6 +134,9 @@
                 <CheckBox Content="Hide successful operation dialog"
                           IsChecked="{Binding HideSuccessfulOperationDialog}"
                           ToolTip="Check this to only show a dialog when an error occurs." />
+                <CheckBox Content="Replicate links into .agent/skills, .agents/skills, .claude/skills"
+                          IsChecked="{Binding ReplicateToAgentFolders}"
+                          ToolTip="Create the same symlinks inside these subfolders under the destination path, creating them if missing." />
             </StackPanel>
 
             <DockPanel Grid.Row="4" LastChildFill="False">

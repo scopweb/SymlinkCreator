@@ -46,7 +46,7 @@ namespace SymlinkCreator.ui.mainWindow
 
         #region fields
 
-        private string _previouslySelectedDestinationFolderPath = "";
+        private string _previouslySelectedDestinationFolderPath = System.Configuration.ConfigurationManager.AppSettings["DefaultDestinationFolderPath"];
 
         #endregion
 
@@ -88,7 +88,8 @@ namespace SymlinkCreator.ui.mainWindow
             CommonOpenFileDialog folderBrowserDialog = new CommonOpenFileDialog
             {
                 IsFolderPicker = true,
-                Multiselect = true
+                Multiselect = true,
+                InitialDirectory = System.Configuration.ConfigurationManager.AppSettings["DefaultSourceFolderPath"]
             };
 
             if (folderBrowserDialog.ShowDialog() == CommonFileDialogResult.Ok)
@@ -184,11 +185,37 @@ namespace SymlinkCreator.ui.mainWindow
 
             mainWindowViewModel.DestinationPath = SanitizePath(mainWindowViewModel.DestinationPath);
 
+            bool overwriteExisting = false;
+
+            List<string> destinationPaths = BuildDestinationPaths(mainWindowViewModel.DestinationPath,
+                mainWindowViewModel.ReplicateToAgentFolders);
+
+            if (HasExistingTargets(destinationPaths, mainWindowViewModel.FileOrFolderList))
+            {
+                MessageBoxResult result = MessageBox.Show(this,
+                    "Ya existen algunos enlaces en la ruta destino.\n" +
+                    "\nSí = sobrescribir los existentes." +
+                    "\nNo = saltar los que ya existen y crear solo los nuevos." +
+                    "\nCancelar = no hacer nada.",
+                    "Enlaces existentes",
+                    MessageBoxButton.YesNoCancel,
+                    MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Cancel)
+                {
+                    return;
+                }
+
+                overwriteExisting = result == MessageBoxResult.Yes;
+            }
+
             SymlinkAgent symlinkAgent = new SymlinkAgent(
                 mainWindowViewModel.FileOrFolderList,
                 mainWindowViewModel.DestinationPath,
                 mainWindowViewModel.ShouldUseRelativePath,
-                mainWindowViewModel.ShouldRetainScriptFile);
+                mainWindowViewModel.ShouldRetainScriptFile,
+                mainWindowViewModel.ReplicateToAgentFolders,
+                overwriteExisting);
 
             try
             {
@@ -251,6 +278,49 @@ namespace SymlinkCreator.ui.mainWindow
         {
             return path.Trim() // Trim any surrounding whitespace
                        .Trim('"'); // Remove surrounding quotation marks if present
+        }
+
+        private List<string> BuildDestinationPaths(string baseDestinationPath, bool replicateToAgentFolders)
+        {
+            if (replicateToAgentFolders)
+            {
+                string[] agentReplicaSubfolders =
+                {
+                    ".agent\\skills",
+                    ".agents\\skills",
+                    ".claude\\skills"
+                };
+
+                List<string> paths = new List<string>();
+                foreach (string subfolder in agentReplicaSubfolders)
+                {
+                    paths.Add(Path.Combine(baseDestinationPath, subfolder));
+                }
+                return paths;
+            }
+
+            return new List<string> { baseDestinationPath };
+        }
+
+        private bool HasExistingTargets(IEnumerable<string> destinationPaths, IEnumerable<string> sourcePaths)
+        {
+            foreach (string destination in destinationPaths)
+            {
+                foreach (string source in sourcePaths)
+                {
+                    string targetName = Path.GetFileName(source);
+                    if (string.IsNullOrWhiteSpace(targetName))
+                        continue;
+
+                    string targetPath = Path.Combine(destination, targetName);
+                    if (Directory.Exists(targetPath) || File.Exists(targetPath))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
         private void AddToSourceFileOrFolderList(IEnumerable<string> fileOrFolderList)

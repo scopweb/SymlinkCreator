@@ -28,6 +28,8 @@ namespace SymlinkCreator.ui.mainWindow
 
         public bool HideSuccessfulOperationDialog { get; set; } = false;
 
+        public bool ReplicateToAgentFolders { get; set; } = false;
+
         #endregion
 
 

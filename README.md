@@ -81,3 +81,14 @@ You can also send crypto tokens to the following addresses:
 If donating is not an option, simply starring the repo, sharing feedback, or spreading the word is equally appreciated. Thank you for using Symlink Creator and sharing your thoughts.
 
 Happy Symlinking!
+
+## Modifications in this Fork
+
+This version of Symlink Creator includes additional configuration options to streamline your workflow:
+
+- **Configurable Default Paths**: You can customize the default directories for adding folders and selecting the destination path. These settings are located in the `App.config` file:
+  - `DefaultSourceFolderPath`: Sets the initial directory for the "Add folders" dialog (e.g., `C:\MCPs\SKILLS`).
+  - `DefaultDestinationFolderPath`: Sets the initial directory for the "Destination path" dialog (e.g., `C:\MCPs\clone`).
+
+This project is a fork of the original [Symlink Creator](https://github.com/arnobpl/SymlinkCreator) by Arnob Paul. The original license and copyright notice can be found in the [LICENSE](LICENSE) file.
+

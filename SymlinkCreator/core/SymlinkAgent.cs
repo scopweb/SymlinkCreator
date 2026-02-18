@@ -14,8 +14,15 @@ namespace SymlinkCreator.core
         private string _destinationPath;
         private readonly bool _shouldUseRelativePath;
         private readonly bool _shouldRetainScriptFile;
+        private readonly bool _replicateToAgentFolders;
+        private readonly bool _overwriteExisting;
 
-        private string[] _splittedDestinationPath;
+        private static readonly string[] AgentReplicaSubfolders =
+        {
+            ".agent\\skills",
+            ".agents\\skills",
+            ".claude\\skills"
+        };
 
         #endregion
 
@@ -23,12 +30,15 @@ namespace SymlinkCreator.core
         #region constructor
 
         public SymlinkAgent(IEnumerable<string> sourceFileOrFolderList, string destinationPath,
-            bool shouldUseRelativePath = true, bool shouldRetainScriptFile = false)
+            bool shouldUseRelativePath = true, bool shouldRetainScriptFile = false,
+            bool replicateToAgentFolders = false, bool overwriteExisting = false)
         {
             this._sourceFileOrFolderList = sourceFileOrFolderList.ToList();
             this._destinationPath = destinationPath;
             this._shouldUseRelativePath = shouldUseRelativePath;
             this._shouldRetainScriptFile = shouldRetainScriptFile;
+            this._replicateToAgentFolders = replicateToAgentFolders;
+            this._overwriteExisting = overwriteExisting;
         }
 
         #endregion
@@ -44,16 +54,22 @@ namespace SymlinkCreator.core
                 throw new FileNotFoundException("Destination path does not exist", _destinationPath);
             }
 
-            // Remove the last '\' character from the path if exists
+            // Normalize base destination path (remove trailing '\\' if present)
             if (_destinationPath[_destinationPath.Length - 1] == '\\')
                 _destinationPath = _destinationPath.Substring(0, _destinationPath.Length - 1);
 
-            _splittedDestinationPath = GetSplittedPath(_destinationPath);
+            List<string> destinationPaths = BuildDestinationPaths();
+
+            foreach (string path in destinationPaths)
+            {
+                // Ensure target subfolders exist before scripting
+                Directory.CreateDirectory(path);
+            }
 
             string scriptFileName = ApplicationConfiguration.ApplicationFileName + "_" +
                                     DateTime.Now.Ticks.ToString() + ".cmd";
 
-            ScriptExecutor scriptExecutor = PrepareScriptExecutor(scriptFileName);
+            ScriptExecutor scriptExecutor = PrepareScriptExecutor(scriptFileName, destinationPaths);
             scriptExecutor.ExecuteAsAdmin();
 
             if (!_shouldRetainScriptFile)
@@ -70,34 +86,70 @@ namespace SymlinkCreator.core
 
         #region helper methods
 
-        private ScriptExecutor PrepareScriptExecutor(string scriptFileName)
+        private List<string> BuildDestinationPaths()
+        {
+            if (_replicateToAgentFolders)
+            {
+                List<string> replicaPaths = new List<string>();
+                foreach (string subfolder in AgentReplicaSubfolders)
+                {
+                    replicaPaths.Add(Path.Combine(_destinationPath, subfolder));
+                }
+                return replicaPaths;
+            }
+
+            return new List<string> { _destinationPath };
+        }
+
+        private ScriptExecutor PrepareScriptExecutor(string scriptFileName, IEnumerable<string> destinationPaths)
         {
             ScriptExecutor scriptExecutor = new ScriptExecutor(scriptFileName);
 
-            // Go to destination path
-            scriptExecutor.WriteLine(_splittedDestinationPath[0]);
-            scriptExecutor.WriteLine("cd \"" + _destinationPath + "\"");
-
-            foreach (string sourceFilePath in _sourceFileOrFolderList)
+            foreach (string destinationPath in destinationPaths)
             {
-                string[] splittedSourceFilePath = GetSplittedPath(sourceFilePath);
+                string[] splittedDestinationPath = GetSplittedPath(destinationPath);
 
-                string commandLineTargetPath = sourceFilePath;
-                if (_shouldUseRelativePath)
+                // Switch drive and change directory
+                scriptExecutor.WriteLine(splittedDestinationPath[0]);
+                scriptExecutor.WriteLine("cd \"" + destinationPath + "\"");
+
+                foreach (string sourceFilePath in _sourceFileOrFolderList)
                 {
-                    // Check if both root drives are same
-                    if (splittedSourceFilePath.First() == _splittedDestinationPath.First())
+                    string[] splittedSourceFilePath = GetSplittedPath(sourceFilePath);
+
+                    string commandLineTargetPath = sourceFilePath;
+                    if (_shouldUseRelativePath)
                     {
-                        commandLineTargetPath = GetRelativePath(_splittedDestinationPath, splittedSourceFilePath);
+                        // Check if both root drives are same
+                        if (splittedSourceFilePath.First() == splittedDestinationPath.First())
+                        {
+                            commandLineTargetPath = GetRelativePath(splittedDestinationPath, splittedSourceFilePath);
+                        }
                     }
+
+                    string targetName = splittedSourceFilePath.Last();
+                    string fullTargetPath = Path.Combine(destinationPath, targetName);
+
+                    bool targetExists = Directory.Exists(fullTargetPath) || File.Exists(fullTargetPath);
+                    if (targetExists && !_overwriteExisting)
+                    {
+                        continue;
+                    }
+
+                    if (_overwriteExisting)
+                    {
+                        // Best-effort removal of existing file/dir/symlink before recreating
+                        scriptExecutor.WriteLine("if exist \"" + targetName + "\\\" rmdir \"" + targetName + "\" /s /q");
+                        scriptExecutor.WriteLine("if exist \"" + targetName + "\" del \"" + targetName + "\" /f /q");
+                    }
+
+                    scriptExecutor.Write("mklink ");
+                    if (Directory.Exists(sourceFilePath))
+                        scriptExecutor.Write("/d ");
+
+                    scriptExecutor.WriteLine("\"" + targetName + "\" " +
+                                             "\"" + commandLineTargetPath + "\"");
                 }
-
-                scriptExecutor.Write("mklink ");
-                if (Directory.Exists(sourceFilePath))
-                    scriptExecutor.Write("/d ");
-
-                scriptExecutor.WriteLine("\"" + splittedSourceFilePath.Last() + "\" " +
-                                         "\"" + commandLineTargetPath + "\"");
             }
 
             return scriptExecutor;
