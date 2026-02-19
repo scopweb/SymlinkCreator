@@ -38,6 +38,12 @@ Symlink Creator creates *symlinks* which is an NTFS feature. Unlike the traditio
 - Tick the `Use relative path if possible` option to use relative paths while creating symlinks. In this case, relative paths will be used if both source files/folders and destination files/folders are in the same drive.
 - Tick the `Retain script file after execution` option if you want to save the script file for later use like logging purposes or other advanced usage.
 - Tick the `Hide successful operation dialog` option if you want to only show a dialog when an error occurs.
+- Tick the `Replicate links into agent folders` option to automatically create symlinks in the following agent framework directories:
+  - `.agent/skills`
+  - `.agents/skills`
+  - `.claude/skills`
+
+  This is useful if you want to make your files/folders available across multiple AI agent framework directories simultaneously, without manually copying the symlinks to each location.
 
 ## Why Symlink Creator needs administrative rights
 It has been stated before that Symlink Creator uses the `mklink` command to create symlinks. The `mklink` command requires administrative privilege to create symlinks. You can find more information [here](https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/create-symbolic-links).
