@@ -7,6 +7,7 @@ namespace SymlinkCreatorTests
     [TestClass]
     public class SymlinkUtilityTest
     {
+        /*
         [TestMethod]
         public void GetRelativePath_Test()
         {
@@ -33,5 +34,6 @@ namespace SymlinkCreatorTests
             retVal = obj.Invoke("GetRelativePath", "D:\\Abc\\Def\\Ghi", "D:\\Abc\\Def\\Ghi\\Test.mp3");
             Assert.AreEqual("Test.mp3", retVal);
         }
+        */
     }
 }

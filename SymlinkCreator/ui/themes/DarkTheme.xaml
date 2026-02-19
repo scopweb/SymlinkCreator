@@ -1,38 +1,28 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-  <!-- ========== COLOR PALETTE (Catppuccin Mocha) ========== -->
+  <!-- ========== SIMPLE COLOR PALETTE ========== -->
   <Color x:Key="AppBackgroundColor">#1E1E2E</Color>
   <Color x:Key="AppSurfaceColor">#181825</Color>
-  <Color x:Key="AppOverlayColor">#313244</Color>
-  <Color x:Key="AppBorderColor">#45475A</Color>
   <Color x:Key="AppTextColor">#CDD6F4</Color>
-  <Color x:Key="AppSubtextColor">#BAC2DE</Color>
-  <Color x:Key="AppMutedColor">#6C7086</Color>
+  <Color x:Key="AppBorderColor">#45475A</Color>
   <Color x:Key="AppAccentColor">#89B4FA</Color>
-  <Color x:Key="AppAccentHoverColor">#B4D0FF</Color>
-  <Color x:Key="AppSuccessColor">#A6E3A1</Color>
-  <Color x:Key="AppErrorColor">#F38BA8</Color>
-  <Color x:Key="AppYellowColor">#F9E2AF</Color>
 
-  <!-- ========== BRUSHES ========== -->
-  <SolidColorBrush x:Key="AppBackgroundBrush" Color="{StaticResource AppBackgroundColor}" />
-  <SolidColorBrush x:Key="AppSurfaceBrush" Color="{StaticResource AppSurfaceColor}" />
-  <SolidColorBrush x:Key="AppOverlayBrush" Color="{StaticResource AppOverlayColor}" />
-  <SolidColorBrush x:Key="AppBorderBrush" Color="{StaticResource AppBorderColor}" />
-  <SolidColorBrush x:Key="AppTextBrush" Color="{StaticResource AppTextColor}" />
-  <SolidColorBrush x:Key="AppSubtextBrush" Color="{StaticResource AppSubtextColor}" />
-  <SolidColorBrush x:Key="AppMutedBrush" Color="{StaticResource AppMutedColor}" />
-  <SolidColorBrush x:Key="AppAccentBrush" Color="{StaticResource AppAccentColor}" />
-  <SolidColorBrush x:Key="AppAccentHoverBrush" Color="{StaticResource AppAccentHoverColor}" />
-  <SolidColorBrush x:Key="AppSuccessBrush" Color="{StaticResource AppSuccessColor}" />
-  <SolidColorBrush x:Key="AppErrorBrush" Color="{StaticResource AppErrorColor}" />
-  <SolidColorBrush x:Key="AppYellowBrush" Color="{StaticResource AppYellowColor}" />
-
-  <!-- Semi-transparent versions for selection/hover -->
-  <SolidColorBrush x:Key="AppAccentSemiTransparentBrush" Color="{StaticResource AppAccentColor}" Opacity="0.3" />
-  <SolidColorBrush x:Key="AppOverlaySemiTransparentBrush" Color="{StaticResource AppOverlayColor}" Opacity="0.5" />
+  <!-- ========== BRUSHES (ABSOLUTE MINIMUM) ========== -->
+  <SolidColorBrush x:Key="AppBackgroundBrush" Color="#1E1E2E" />
+  <SolidColorBrush x:Key="AppSurfaceBrush" Color="#181825" />
+  <SolidColorBrush x:Key="AppBorderBrush" Color="#45475A" />
+  <SolidColorBrush x:Key="AppTextBrush" Color="#CDD6F4" />
+  <SolidColorBrush x:Key="AppSubtextBrush" Color="#BAC2DE" />
+  <SolidColorBrush x:Key="AppMutedBrush" Color="#6C7086" />
+  <SolidColorBrush x:Key="AppAccentBrush" Color="#89B4FA" />
+  <SolidColorBrush x:Key="AppAccentHoverBrush" Color="#B4D0FF" />
+  <SolidColorBrush x:Key="AppOverlayBrush" Color="#313244" />
+  <SolidColorBrush x:Key="AppSuccessBrush" Color="#A6E3A1" />
+  <SolidColorBrush x:Key="AppErrorBrush" Color="#F38BA8" />
+  <SolidColorBrush x:Key="AppYellowBrush" Color="#F9E2AF" />
+  <SolidColorBrush x:Key="AppAccentSemiTransparentBrush" Color="#89B4FA" Opacity="0.3" />
+  <SolidColorBrush x:Key="AppOverlaySemiTransparentBrush" Color="#313244" Opacity="0.5" />
 
   <!-- ========== WINDOW STYLE ========== -->
   <Style TargetType="{x:Type Window}">
@@ -40,232 +30,39 @@
     <Setter Property="Foreground" Value="{StaticResource AppTextBrush}" />
     <Setter Property="FontFamily" Value="Segoe UI" />
     <Setter Property="FontSize" Value="12" />
-    <Setter Property="BorderThickness" Value="0" />
   </Style>
 
   <!-- ========== BUTTON STYLE ========== -->
   <Style TargetType="{x:Type Button}">
-    <Setter Property="Background" Value="{StaticResource AppOverlayBrush}" />
-    <Setter Property="Foreground" Value="{StaticResource AppTextBrush}" />
-    <Setter Property="BorderBrush" Value="{StaticResource AppBorderBrush}" />
+    <Setter Property="Background" Value="#313244" />
+    <Setter Property="Foreground" Value="#CDD6F4" />
+    <Setter Property="BorderBrush" Value="#45475A" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Padding" Value="12,6" />
-    <Setter Property="Margin" Value="5" />
-    <Setter Property="MinWidth" Value="80" />
-    <Setter Property="MinHeight" Value="28" />
-    <Setter Property="FontSize" Value="12" />
     <Setter Property="FontFamily" Value="Segoe UI" />
     <Setter Property="Cursor" Value="Hand" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="{x:Type Button}">
-          <Border Background="{TemplateBinding Background}"
-                  BorderBrush="{TemplateBinding BorderBrush}"
-                  BorderThickness="{TemplateBinding BorderThickness}"
-                  CornerRadius="4"
-                  Padding="{TemplateBinding Padding}">
-            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-          </Border>
-          <ControlTemplate.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-              <Setter Property="Background" Value="{StaticResource AppAccentBrush}" />
-              <Setter Property="Foreground" Value="#000000" />
-            </Trigger>
-            <Trigger Property="IsPressed" Value="True">
-              <Setter Property="Background" Value="{StaticResource AppAccentSemiTransparentBrush}" />
-              <Setter Property="Opacity" Value="0.9" />
-            </Trigger>
-            <Trigger Property="IsEnabled" Value="False">
-              <Setter Property="Foreground" Value="{StaticResource AppMutedBrush}" />
-              <Setter Property="Opacity" Value="0.6" />
-            </Trigger>
-          </ControlTemplate.Triggers>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
   </Style>
 
   <!-- ========== TEXTBOX STYLE ========== -->
   <Style TargetType="{x:Type TextBox}">
-    <Setter Property="Background" Value="{StaticResource AppSurfaceBrush}" />
-    <Setter Property="Foreground" Value="{StaticResource AppTextBrush}" />
-    <Setter Property="BorderBrush" Value="{StaticResource AppBorderBrush}" />
+    <Setter Property="Background" Value="#181825" />
+    <Setter Property="Foreground" Value="#CDD6F4" />
+    <Setter Property="BorderBrush" Value="#45475A" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Padding" Value="8,6" />
-    <Setter Property="Margin" Value="5" />
-    <Setter Property="FontSize" Value="12" />
     <Setter Property="FontFamily" Value="Segoe UI" />
-    <Setter Property="CaretBrush" Value="{StaticResource AppAccentBrush}" />
-    <Setter Property="SelectionBrush" Value="{StaticResource AppAccentSemiTransparentBrush}" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="{x:Type TextBox}">
-          <Border Background="{TemplateBinding Background}"
-                  BorderBrush="{TemplateBinding BorderBrush}"
-                  BorderThickness="{TemplateBinding BorderThickness}"
-                  CornerRadius="2"
-                  Padding="{TemplateBinding Padding}">
-            <ScrollViewer x:Name="PART_ContentHost" Foreground="{TemplateBinding Foreground}" />
-          </Border>
-          <ControlTemplate.Triggers>
-            <Trigger Property="IsFocused" Value="True">
-              <Setter Property="BorderBrush" Value="{StaticResource AppAccentBrush}" />
-              <Setter Property="BorderThickness" Value="2" />
-            </Trigger>
-            <Trigger Property="IsEnabled" Value="False">
-              <Setter Property="Foreground" Value="{StaticResource AppMutedBrush}" />
-              <Setter Property="Background" Value="{StaticResource AppOverlayBrush}" />
-              <Setter Property="Opacity" Value="0.6" />
-            </Trigger>
-          </ControlTemplate.Triggers>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
-  <!-- ========== CHECKBOX STYLE ========== -->
-  <Style TargetType="{x:Type CheckBox}">
-    <Setter Property="Foreground" Value="{StaticResource AppTextBrush}" />
-    <Setter Property="Background" Value="{StaticResource AppSurfaceBrush}" />
-    <Setter Property="BorderBrush" Value="{StaticResource AppBorderBrush}" />
-    <Setter Property="Padding" Value="6,4" />
-    <Setter Property="Margin" Value="5" />
-    <Setter Property="FontSize" Value="12" />
-    <Setter Property="FontFamily" Value="Segoe UI" />
-    <Setter Property="Cursor" Value="Hand" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="{x:Type CheckBox}">
-          <Grid>
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="Auto" />
-              <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" Background="{TemplateBinding Background}"
-                    BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="1"
-                    CornerRadius="2"
-                    Width="18" Height="18"
-                    Margin="2,0,6,0"
-                    VerticalAlignment="Center">
-              <Path x:Name="CheckMark" Data="M 2 8 L 7 13 L 14 2" Stroke="{StaticResource AppAccentBrush}"
-                    StrokeThickness="2" Fill="None" Visibility="Collapsed" VerticalAlignment="Center"
-                    HorizontalAlignment="Center" />
-            </Border>
-            <ContentPresenter Grid.Column="1" VerticalAlignment="Center" Margin="2,0" />
-          </Grid>
-          <ControlTemplate.Triggers>
-            <Trigger Property="IsChecked" Value="True">
-              <Setter TargetName="CheckMark" Property="Visibility" Value="Visible" />
-              <Setter Property="Background" Value="{StaticResource AppOverlayBrush}" />
-            </Trigger>
-            <Trigger Property="IsMouseOver" Value="True">
-              <Setter Property="BorderBrush" Value="{StaticResource AppAccentBrush}" />
-            </Trigger>
-            <Trigger Property="IsEnabled" Value="False">
-              <Setter Property="Foreground" Value="{StaticResource AppMutedBrush}" />
-              <Setter Property="Opacity" Value="0.6" />
-            </Trigger>
-          </ControlTemplate.Triggers>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
-  <!-- ========== TEXTBLOCK STYLE ========== -->
-  <Style TargetType="{x:Type TextBlock}">
-    <Setter Property="Foreground" Value="{StaticResource AppTextBrush}" />
-    <Setter Property="FontFamily" Value="Segoe UI" />
-    <Setter Property="FontSize" Value="12" />
-    <Setter Property="Margin" Value="5" />
   </Style>
 
   <!-- ========== LABEL STYLE ========== -->
   <Style TargetType="{x:Type Label}">
-    <Setter Property="Foreground" Value="{StaticResource AppSubtextBrush}" />
+    <Setter Property="Foreground" Value="#BAC2DE" />
     <Setter Property="FontFamily" Value="Segoe UI" />
-    <Setter Property="FontSize" Value="11" />
-    <Setter Property="Margin" Value="5" />
   </Style>
 
-  <!-- ========== LISTVIEW STYLE ========== -->
-  <Style TargetType="{x:Type ListView}">
-    <Setter Property="Background" Value="{StaticResource AppSurfaceBrush}" />
-    <Setter Property="Foreground" Value="{StaticResource AppTextBrush}" />
-    <Setter Property="BorderBrush" Value="{StaticResource AppBorderBrush}" />
-    <Setter Property="BorderThickness" Value="1" />
-    <Setter Property="Padding" Value="0" />
-    <Setter Property="Margin" Value="5" />
-  </Style>
-
-  <Style TargetType="{x:Type ListViewItem}">
-    <Setter Property="Background" Value="Transparent" />
-    <Setter Property="Foreground" Value="{StaticResource AppTextBrush}" />
-    <Setter Property="Padding" Value="8,4" />
-    <Setter Property="Margin" Value="0" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="{x:Type ListViewItem}">
-          <Border Background="{TemplateBinding Background}"
-                  Padding="{TemplateBinding Padding}"
-                  Margin="{TemplateBinding Margin}"
-                  BorderThickness="0">
-            <ContentPresenter />
-          </Border>
-          <ControlTemplate.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-              <Setter Property="Background" Value="{StaticResource AppOverlayBrush}" />
-            </Trigger>
-            <Trigger Property="IsSelected" Value="True">
-              <Setter Property="Background" Value="{StaticResource AppAccentSemiTransparentBrush}" />
-              <Setter Property="Foreground" Value="{StaticResource AppAccentHoverBrush}" />
-            </Trigger>
-          </ControlTemplate.Triggers>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
-  <!-- ========== SEPARATOR STYLE ========== -->
-  <Style TargetType="{x:Type Separator}">
-    <Setter Property="Background" Value="{StaticResource AppBorderBrush}" />
-    <Setter Property="Height" Value="1" />
-    <Setter Property="Margin" Value="5" />
-  </Style>
-
-  <!-- ========== SCROLLBAR STYLE ========== -->
-  <Style TargetType="{x:Type ScrollBar}">
-    <Setter Property="Background" Value="{StaticResource AppSurfaceBrush}" />
-    <Setter Property="Foreground" Value="{StaticResource AppBorderBrush}" />
-    <Setter Property="Width" Value="10" />
-  </Style>
-
-  <!-- ========== TOOLTIP STYLE ========== -->
-  <Style TargetType="{x:Type ToolTip}">
-    <Setter Property="Background" Value="{StaticResource AppOverlayBrush}" />
-    <Setter Property="Foreground" Value="{StaticResource AppTextBrush}" />
-    <Setter Property="BorderBrush" Value="{StaticResource AppBorderBrush}" />
-    <Setter Property="BorderThickness" Value="1" />
-    <Setter Property="Padding" Value="8,4" />
-    <Setter Property="FontSize" Value="11" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="{x:Type ToolTip}">
-          <Border Background="{TemplateBinding Background}"
-                  BorderBrush="{TemplateBinding BorderBrush}"
-                  BorderThickness="{TemplateBinding BorderThickness}"
-                  CornerRadius="2"
-                  Padding="{TemplateBinding Padding}">
-            <ContentPresenter TextBlock.Foreground="{TemplateBinding Foreground}" />
-          </Border>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
-  <!-- ========== SCROLLVIEWER STYLE ========== -->
-  <Style TargetType="{x:Type ScrollViewer}">
-    <Setter Property="Background" Value="Transparent" />
+  <!-- ========== TEXTBLOCK STYLE ========== -->
+  <Style TargetType="{x:Type TextBlock}">
+    <Setter Property="Foreground" Value="#CDD6F4" />
+    <Setter Property="FontFamily" Value="Segoe UI" />
   </Style>
 
 </ResourceDictionary>

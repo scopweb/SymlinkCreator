@@ -5,6 +5,8 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>resources\icons\MainIcon.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <GenerateBAML>true</GenerateBAML>
+    <XamlDebuggingInformation>false</XamlDebuggingInformation>
 
     <!-- Assembly metadata -->
     <AssemblyName>SymlinkCreator</AssemblyName>

@@ -12,8 +12,8 @@
         SizeToContent="Height"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
-        Background="{DynamicResource AppSurfaceBrush}"
-        Foreground="{DynamicResource AppTextBrush}">
+        Background="{StaticResource AppSurfaceBrush}"
+        Foreground="{StaticResource AppTextBrush}">
 
     <Grid Margin="24">
         <Grid.RowDefinitions>
@@ -30,46 +30,46 @@
                    FontSize="20"
                    FontWeight="Bold"
                    Margin="0,0,0,8">
-            <Run Foreground="{DynamicResource AppAccentBrush}">Symlink Creator</Run>
-            <Run Foreground="{DynamicResource AppSubtextBrush}">v1.4.0</Run>
+            <Run Foreground="{StaticResource AppAccentBrush}">Symlink Creator</Run>
+            <Run Foreground="{StaticResource AppSubtextBrush}">v1.4.0</Run>
         </TextBlock>
 
         <!-- Original Author -->
         <TextBlock Grid.Row="1"
                    Text="Originally developed by Arnob Paul"
-                   Foreground="{DynamicResource AppSubtextBrush}"
+                   Foreground="{StaticResource AppSubtextBrush}"
                    Margin="0,0,0,4"
                    TextWrapping="Wrap" />
 
         <!-- Description -->
         <TextBlock Grid.Row="2"
                    Text="A GUI application for creating Windows NTFS symbolic links with support for multiple file/folder creation, relative paths, and agent folder replication."
-                   Foreground="{DynamicResource AppTextBrush}"
+                   Foreground="{StaticResource AppTextBrush}"
                    Margin="0,12,0,12"
                    TextWrapping="Wrap"
                    LineHeight="18" />
 
         <!-- Fork Information -->
         <Border Grid.Row="3"
-                Background="{DynamicResource AppOverlayBrush}"
-                BorderBrush="{DynamicResource AppBorderBrush}"
+                Background="{StaticResource AppOverlayBrush}"
+                BorderBrush="{StaticResource AppBorderBrush}"
                 BorderThickness="1"
                 CornerRadius="4"
                 Padding="12">
             <StackPanel>
                 <TextBlock Text="Enhanced Fork"
-                           Foreground="{DynamicResource AppAccentBrush}"
+                           Foreground="{StaticResource AppAccentBrush}"
                            FontWeight="SemiBold"
                            FontSize="11"
                            Margin="0,0,0,4" />
                 <TextBlock Text="This is a fork with enhanced configuration options including:  configurable default source and destination paths. For more information, visit:"
-                           Foreground="{DynamicResource AppTextBrush}"
+                           Foreground="{StaticResource AppTextBrush}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,8" />
                 <TextBlock>
                     <Hyperlink NavigateUri="{x:Static core:ApplicationConfiguration.CompanyWebAddressUri}"
                                Click="Hyperlink_OnClick"
-                               Foreground="{DynamicResource AppAccentBrush}">
+                               Foreground="{StaticResource AppAccentBrush}">
                         <TextBlock Text="{x:Static core:ApplicationConfiguration.CompanyWebAddress}" />
                     </Hyperlink>
                 </TextBlock>
@@ -79,7 +79,7 @@
         <!-- Footer -->
         <TextBlock Grid.Row="4"
                    Text="Thank you for using Symlink Creator!"
-                   Foreground="{DynamicResource AppMutedBrush}"
+                   Foreground="{StaticResource AppMutedBrush}"
                    Margin="0,16,0,16"
                    TextAlignment="Center"
                    FontSize="11" />

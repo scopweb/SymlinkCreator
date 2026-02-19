@@ -37,14 +37,14 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Text="Source files or folders"
-                           Foreground="{DynamicResource AppSubtextBrush}"
+                           Foreground="{StaticResource AppSubtextBrush}"
                            FontSize="11"
                            FontWeight="SemiBold"
                            Margin="0,0,0,8" />
 
-                <Border Grid.Row="1" BorderBrush="{DynamicResource AppBorderBrush}"
+                <Border Grid.Row="1" BorderBrush="{StaticResource AppBorderBrush}"
                         BorderThickness="1" CornerRadius="4" Padding="0"
-                        Background="{DynamicResource AppSurfaceBrush}">
+                        Background="{StaticResource AppSurfaceBrush}">
                     <ListView x:Name="SourceFileOrFolderListView"
                               ItemsSource="{Binding FileOrFolderList}"
                               AllowDrop="True"
@@ -73,7 +73,7 @@
             <!-- VERTICAL DIVIDER -->
             <Border Grid.Column="1"
                     Width="1"
-                    Background="{DynamicResource AppBorderBrush}"
+                    Background="{StaticResource AppBorderBrush}"
                     Margin="0,12" />
 
             <!-- RIGHT PANEL: Destination & Options -->
@@ -88,7 +88,7 @@
 
                 <!-- Destination Path Label -->
                 <TextBlock Grid.Row="0" Text="Destination path"
-                           Foreground="{DynamicResource AppSubtextBrush}"
+                           Foreground="{StaticResource AppSubtextBrush}"
                            FontSize="11"
                            FontWeight="SemiBold"
                            Margin="0,0,0,8" />
@@ -120,7 +120,7 @@
                 <!-- Options Section -->
                 <StackPanel Grid.Row="3" Margin="0,8,0,0">
                     <TextBlock Text="Options"
-                               Foreground="{DynamicResource AppSubtextBrush}"
+                               Foreground="{StaticResource AppSubtextBrush}"
                                FontSize="11"
                                FontWeight="SemiBold"
                                Margin="0,0,0,8" />
@@ -149,8 +149,8 @@
                 <Button Grid.Row="4"
                         x:Name="CreateSymlinksButton"
                         Click="CreateSymlinksButton_OnClick"
-                        Background="{DynamicResource AppAccentBrush}"
-                        Foreground="#1E1E2E"
+                        Background="{StaticResource AppAccentBrush}"
+                        Foreground="{StaticResource AppBackgroundBrush}"
                         FontWeight="SemiBold"
                         Margin="0,12,0,0"
                         Padding="16,10"
@@ -165,8 +165,8 @@
 
         <!-- FOOTER BAR -->
         <Border Grid.Row="1"
-                Background="{DynamicResource AppSurfaceBrush}"
-                BorderBrush="{DynamicResource AppBorderBrush}"
+                Background="{StaticResource AppSurfaceBrush}"
+                BorderBrush="{StaticResource AppBorderBrush}"
                 BorderThickness="0,1,0,0"
                 Padding="12">
             <Button Content="About"
