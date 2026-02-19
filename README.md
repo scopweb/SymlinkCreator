@@ -44,11 +44,20 @@ It has been stated before that Symlink Creator uses the `mklink` command to crea
 
 ## Enhancements in this Fork
 
-This version includes additional configuration options for improved workflow efficiency:
+This fork (v1.4.0+) includes modern improvements and professional styling:
 
+### Features
 - **Configurable Default Paths**: Customize the default directories in `App.config`:
   - `DefaultSourceFolderPath`: Initial directory for the "Add folders" dialog
   - `DefaultDestinationFolderPath`: Initial directory for the "Destination path" dialog
+
+### Modern UI/UX
+- **Professional Dark Theme**: Ultra-dark Catppuccin Mocha-inspired color palette
+  - Clean, modern interface with excellent contrast
+  - Custom title bar with native window controls (minimize, maximize, close)
+  - Smooth gray hover states on all interactive elements
+  - Consistent styling across all controls (buttons, text boxes, checkboxes, etc.)
+- **.NET 10 WPF**: Latest framework with modern C# features and performance improvements
 
 ## License
 

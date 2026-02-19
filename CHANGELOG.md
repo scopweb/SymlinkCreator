@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.1] - 2026-02-19
+
+### Changed
+- **Dark Theme Refinements**:
+  - Improved button hover and press states with gray color transitions (#262630 hover, #303039 pressed)
+  - Fixed TextBlock color inheritance for better title visibility
+  - Adjusted subtext color to #888888 for improved contrast on dark backgrounds
+  - Implemented custom ControlTemplate for Button to properly support theme triggers
+- **UI Polish**: Removed hardcoded button foreground colors to allow proper style inheritance
+
+### Fixed
+- Fixed issue where section titles (Source files, Destination path, Options) were hard to read on dark backgrounds
+- Button hover states now properly display gray instead of default system colors
+
 ## [1.4.0] - 2026-02-18
 
 ### Added
