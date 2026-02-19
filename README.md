@@ -3,11 +3,11 @@ Symlink Creator is a GUI app for creating symbolic links (symlinks), and it is b
 
 ## Download
 
-[![Download Latest Release](https://img.shields.io/badge/Download-Latest--Version-blue?style=for-the-badge&logo=github)](https://github.com/arnobpl/SymlinkCreator/releases/latest/download/Symlink.Creator.zip)
+[![Download Latest Release](https://img.shields.io/badge/Download-Latest--Version-blue?style=for-the-badge&logo=github)](https://github.com/scopweb/SymlinkCreator/releases)
 
-📦 [Download Symlink.Creator.zip](https://github.com/arnobpl/SymlinkCreator/releases/latest/download/Symlink.Creator.zip)
+📦 [View releases and download](https://github.com/scopweb/SymlinkCreator/releases)
 
-🗂️ [View all releases](https://github.com/arnobpl/SymlinkCreator/releases)
+🗂️ [Fork on GitHub](https://github.com/scopweb/SymlinkCreator)
 
 ## Use cases
 - Suppose, you have a collection of several songs sorted by artists and albums on your PC. You might want a separate collection of your favorite songs which you will store on your mobile devices. In this scenario, the traditional shortcut option through the File Explorer right-click context menu is insufficient, because you cannot copy the actual file contents by copying the traditional shortcut files (*\*.lnk*). You might consider duplicating the files which you will store on your mobile devices. But it will waste the storage space of your PC. In this case, Symlink Creator will come in handy. You can easily create a separate collection of songs and transfer them to your mobile devices, without wasting your PC's storage space.
