@@ -168,8 +168,6 @@
                 <Button Grid.Row="4"
                         x:Name="CreateSymlinksButton"
                         Click="CreateSymlinksButton_OnClick"
-                        Background="#1A1A20"
-                        Foreground="#FFFFFF"
                         FontWeight="SemiBold"
                         Margin="0,12,0,0"
                         Padding="16,10"
