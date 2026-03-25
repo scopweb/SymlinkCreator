@@ -161,7 +161,7 @@
 
                     <CheckBox Content="Replicate links into agent folders"
                               IsChecked="{Binding ReplicateToAgentFolders}"
-                              ToolTip="Create symlinks in .agent/skills, .agents/skills, and .claude/skills" />
+                              ToolTip="Create symlinks in .agent/skills, .agents/skills, .claude/skills, .github/skills, and .copilot/skills" />
                 </StackPanel>
 
                 <!-- Action Button -->

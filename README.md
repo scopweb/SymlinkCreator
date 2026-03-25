@@ -42,6 +42,8 @@ Symlink Creator creates *symlinks* which is an NTFS feature. Unlike the traditio
   - `.agent/skills`
   - `.agents/skills`
   - `.claude/skills`
+  - `.github/skills`
+  - `.copilot/skills`  
 
   This is useful if you want to make your files/folders available across multiple AI agent framework directories simultaneously, without manually copying the symlinks to each location.
 

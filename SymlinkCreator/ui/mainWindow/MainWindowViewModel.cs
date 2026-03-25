@@ -11,7 +11,7 @@ namespace SymlinkCreator.ui.mainWindow
 
         public ObservableCollection<string> FileOrFolderList { get; set; } = new ObservableCollection<string>();
 
-        private string _destinationPath;
+        private string _destinationPath = string.Empty;
         public string DestinationPath
         {
             get { return _destinationPath; }
@@ -35,10 +35,10 @@ namespace SymlinkCreator.ui.mainWindow
 
         #region helper methods
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

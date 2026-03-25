@@ -89,7 +89,7 @@ namespace SymlinkCreator.core
                 UseShellExecute = true,
                 Verb = "runas"
             };
-            using (Process process = Process.Start(processStartInfo))
+            using (Process? process = Process.Start(processStartInfo))
             {
                 if (process != null)
                 {

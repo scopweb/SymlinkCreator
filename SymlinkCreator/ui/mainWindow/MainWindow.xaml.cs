@@ -45,7 +45,8 @@ namespace SymlinkCreator.ui.mainWindow
 
         #region fields
 
-        private string _previouslySelectedDestinationFolderPath = System.Configuration.ConfigurationManager.AppSettings["DefaultDestinationFolderPath"];
+        private string _previouslySelectedDestinationFolderPath =
+            System.Configuration.ConfigurationManager.AppSettings["DefaultDestinationFolderPath"] ?? string.Empty;
 
         #endregion
 
@@ -240,11 +241,14 @@ namespace SymlinkCreator.ui.mainWindow
 
         #region helper methods
 
-        private string[] GetDroppedFileOrFolderList(DragEventArgs e)
+        private string[]? GetDroppedFileOrFolderList(DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.Text))
             {
-                string droppedFileOrFolderList = (string)e.Data.GetData(DataFormats.Text);
+                string? droppedFileOrFolderList = e.Data.GetData(DataFormats.Text) as string;
+                if (string.IsNullOrWhiteSpace(droppedFileOrFolderList))
+                    return null;
+
                 return GetFileOrFolderListFromString(droppedFileOrFolderList);
             }
 
@@ -286,7 +290,9 @@ namespace SymlinkCreator.ui.mainWindow
                 {
                     ".agent\\skills",
                     ".agents\\skills",
-                    ".claude\\skills"
+                    ".claude\\skills",
+                    ".github\\skills",
+                    ".copilot\\skills"
                 };
 
                 List<string> paths = new List<string>();

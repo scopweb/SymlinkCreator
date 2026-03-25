@@ -21,7 +21,9 @@ namespace SymlinkCreator.core
         {
             ".agent\\skills",
             ".agents\\skills",
-            ".claude\\skills"
+            ".claude\\skills",
+            ".github\\skills",
+            ".copilot\\skills"
         };
 
         #endregion

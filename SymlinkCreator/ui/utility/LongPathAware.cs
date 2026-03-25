@@ -44,7 +44,11 @@ namespace SymlinkCreator.ui.utility
 
                         if (SHGetNameFromIDList(abspidl, SIGDN_FILESYSPATH, out IntPtr pszName) == 0)
                         {
-                            yield return Marshal.PtrToStringUni(pszName);
+                            string? path = Marshal.PtrToStringUni(pszName);
+                            if (!string.IsNullOrEmpty(path))
+                            {
+                                yield return path;
+                            }
                             Marshal.FreeCoTaskMem(pszName);
                         }
 

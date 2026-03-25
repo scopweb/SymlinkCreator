@@ -25,6 +25,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NoWarn>$(NoWarn);NU1510</NoWarn>
 
     <!-- Build configuration -->
     <Optimize>false</Optimize>
@@ -35,7 +36,7 @@
   <!-- NuGet package dependencies -->
   <ItemGroup>
     <!-- Configuration management for App.config -->
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.3" />
   </ItemGroup>
 
 </Project>

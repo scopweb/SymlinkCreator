@@ -21,7 +21,7 @@ namespace SymlinkCreator.ui.aboutWindow
 
         private void Hyperlink_OnClick(object sender, RoutedEventArgs e)
         {
-            Hyperlink hyperlink = sender as Hyperlink;
+            Hyperlink? hyperlink = sender as Hyperlink;
             if (hyperlink?.NavigateUri != null)
             {
                 try
