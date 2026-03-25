@@ -38,7 +38,7 @@ Symlink Creator creates *symlinks* which is an NTFS feature. Unlike the traditio
 - Tick the `Use relative path if possible` option to use relative paths while creating symlinks. In this case, relative paths will be used if both source files/folders and destination files/folders are in the same drive.
 - Tick the `Retain script file after execution` option if you want to save the script file for later use like logging purposes or other advanced usage.
 - Tick the `Hide successful operation dialog` option if you want to only show a dialog when an error occurs.
-- Tick the `Replicate links into agent folders` option to automatically create symlinks in the following agent framework directories:
+- Tick the `Replicate links into agent folders` option to automatically create symlinks in each framework's `/skills` subfolder (not in the framework root):
   - `.agent/skills`
   - `.agents/skills`
   - `.claude/skills`
